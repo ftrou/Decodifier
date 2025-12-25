@@ -1,3 +1,7 @@
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](#)
+[![Status](https://img.shields.io/badge/Status-Alpha-yellow)](#)
+[![Python](https://img.shields.io/badge/Python-3.11-blue)](#)
+
 <p align="center">
   <img src="https://via.placeholder.com/600x140?text=DeCodifier" alt="DeCodifier" />
 </p>
@@ -13,10 +17,6 @@
   <a href="#">Quickstart</a> • 
   <a href="#">Contributing</a>
 </p>
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](#)
-[![Status](https://img.shields.io/badge/Status-Alpha-yellow)](#)
-[![Python](https://img.shields.io/badge/Python-3.11-blue)](#)
 
 # DeCodifier v0.1 — Early Access
 
