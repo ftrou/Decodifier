@@ -13,7 +13,9 @@
   <a href="#">Quickstart</a> • 
   <a href="#">Contributing</a>
 </p>
-
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](#)
+[![Status](https://img.shields.io/badge/Status-Alpha-yellow)](#)
+[![Python](https://img.shields.io/badge/Python-3.11-blue)](#)
 
 # DeCodifier v0.1 — Developer Preview (Alpha)
 
@@ -206,9 +208,6 @@ It does **not guarantee correctness** — it accelerates development.
 
 MIT — Use freely.  
 If you build a business on this, tell us — we’ll cheer you on.
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](#)
-[![Status](https://img.shields.io/badge/Status-Alpha-yellow)](#)
-[![Python](https://img.shields.io/badge/Python-3.11-blue)](#)
 
 
 ---
