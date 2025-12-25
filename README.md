@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.11-blue)](#)
 
 <p align="center">
-  <img src="https://via.placeholder.com/600x140?text=DeCodifier" alt="DeCodifier" />
+  <img src="https://github.com/ftrou/Decodifier" alt="DeCodifier" />
 </p>
 
 <p align="center">
@@ -17,6 +17,9 @@
   <a href="#">Quickstart</a> • 
   <a href="#">Contributing</a>
 </p>
+
+pip install decodifier   # (coming soon)
+
 
 # DeCodifier v0.1 — Early Access
 
