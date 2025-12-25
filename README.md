@@ -5,7 +5,7 @@
   &nbsp;&nbsp;•&nbsp;&nbsp;
   <a href="#"><img src="https://img.shields.io/badge/Python-3.11-blue" alt="Python Version"></a>
 </p>
-
+<br/>
 
 <p align="center">
   <img src="https://github.com/ftrou/Decodifier" alt="DeCodifier" />
