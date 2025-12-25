@@ -11,6 +11,7 @@ file I/O → module scaffolding → patching → patterns → commit-ready outpu
 
 🌟 Key Capabilities
 Capability	What It Means
+
 🧠 Repo Awareness	LLMs know your actual folder structure, not guesses
 🔧 Deterministic Tools	No freeform JSON — strict interfaces for file operations
 🏗️ Scaffolding	Generate & organize modules from prompts
