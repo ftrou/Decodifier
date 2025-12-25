@@ -18,7 +18,6 @@
   <a href="#">Contributing</a>
 </p>
 
-pip install decodifier   # (coming soon)
 
 
 # DeCodifier v0.1 — Early Access
@@ -32,6 +31,7 @@ It provides the file operations, project registry, and tool-calling required for
 ## 🚀 Quickstart
 
 ```bash
+pip install decodifier   # (coming soon)
 python -m venv .venv
 source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -e .
