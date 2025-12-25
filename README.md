@@ -1,3 +1,6 @@
+<p align="center">
+  <a href="#">License: MIT</a> • <a href="#">Status: Alpha</a> • <a href="#">Python 3.11+</a>
+</p>
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](#)
 [![Status](https://img.shields.io/badge/Status-Alpha-yellow)](#)
 [![Python](https://img.shields.io/badge/Python-3.11-blue)](#)
