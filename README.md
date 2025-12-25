@@ -1,9 +1,11 @@
 <p align="center">
-  <a href="#">License: MIT</a> • <a href="#">Status: Alpha</a> • <a href="#">Python 3.11+</a>
+  <a href="#"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License"></a>
+  &nbsp;•&nbsp;
+  <a href="#"><img src="https://img.shields.io/badge/Status-Alpha-yellow" alt="Project Status"></a>
+  &nbsp;•&nbsp;
+  <a href="#"><img src="https://img.shields.io/badge/Python-3.11-blue" alt="Python Version"></a>
 </p>
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](#)
-[![Status](https://img.shields.io/badge/Status-Alpha-yellow)](#)
-[![Python](https://img.shields.io/badge/Python-3.11-blue)](#)
+
 
 <p align="center">
   <img src="https://github.com/ftrou/Decodifier" alt="DeCodifier" />
@@ -15,10 +17,9 @@
 </p>
 
 <p align="center">
-  <a href="#">Docs</a> • 
-  <a href="#">Roadmap</a> • 
-  <a href="#">Quickstart</a> • 
-  <a href="#">Contributing</a>
+  <img src="https://github.com/ftrou/Decodifier/tree/main/docs" alt="Docs" />
+  <img src="https://github.com/ftrou/Decodifier/blob/main/ROADMAP.md" alt="Roadmap" />
+  <img src="https://github.com/ftrou/Decodifier/tree/main/.github" alt="Contribute" />
 </p>
 
 
@@ -40,6 +41,9 @@ source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -e .
 uvicorn engine.app.main:app --reload
 ```
+
+👉 Try it live: `python examples/openai_demo/decodifier_openai_demo.py`
+
 
 DeCodifier stores project registry & conversations in `~/.decodifier`.
 
