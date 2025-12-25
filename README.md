@@ -17,8 +17,10 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/ftrou/Decodifier/tree/main/docs" alt="Docs" />
-  <img src="https://github.com/ftrou/Decodifier/blob/main/ROADMAP.md" alt="Roadmap" />
+  <img src="https://github.com/ftrou/Decodifier/tree/main/docs" alt="Docs" /></a>
+  &nbsp;•&nbsp;
+  <img src="https://github.com/ftrou/Decodifier/blob/main/ROADMAP.md" alt="Roadmap" /></a>
+  &nbsp;•&nbsp;
   <img src="https://github.com/ftrou/Decodifier/tree/main/.github" alt="Contribute" />
 </p>
 
