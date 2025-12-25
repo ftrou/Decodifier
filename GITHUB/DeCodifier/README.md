@@ -210,15 +210,10 @@ Activity will appear in the Dashboard — including file writes and patches.
             ↓
 ┌───────────
 ───────────────────┐
-
 │        DeCodifier API        │
-
 ├──────────────────────────────┤
-
 │ file ops | search | patches  │
-
 │ scaffolds | patterns (soon)  │
-
 └──────────┬──────────┬────────┘
 
            |          |
