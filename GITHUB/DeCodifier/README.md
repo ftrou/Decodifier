@@ -13,11 +13,17 @@ file I/O → module scaffolding → patching → patterns → commit-ready outpu
 Capability	What It Means
 
 🧠 Repo Awareness	LLMs know your actual folder structure, not guesses
+
 🔧 Deterministic Tools	No freeform JSON — strict interfaces for file operations
+
 🏗️ Scaffolding	Generate & organize modules from prompts
+
 📌 Safe Writes	Patches only the changed regions, no full-file overwrites
+
 📂 Local Registry	Manage multiple projects on the same engine
+
 🚀 Patterns (v0.2)	Abstract repetitive code into reusable functions for token savings
+
 🔐 Local-First	Nothing is sent to our servers — ever
 
 Think: “Figma for AI code orchestration” — the layer that makes agent coding reliable.
