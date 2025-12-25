@@ -18,7 +18,7 @@
 [![Status](https://img.shields.io/badge/Status-Alpha-yellow)](#)
 [![Python](https://img.shields.io/badge/Python-3.11-blue)](#)
 
-# DeCodifier v0.1 — Developer Preview (Alpha)
+# DeCodifier v0.1 — Early Access
 
 **DeCodifier is a local AI coding engine** that lets LLMs safely inspect and modify real projects.
 It provides the file operations, project registry, and tool-calling required for LLMs to write actual code —
