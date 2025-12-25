@@ -11,6 +11,7 @@
   <img src="https://github.com/ftrou/Decodifier" alt="DeCodifier" />
 </p>
 
+
 <p align="center"><b>LLM Execution Layer for Real Code Bases</b><br/>Make LLMs read, write, patch, and scaffold projects — safely and locally.</p>
 
 
@@ -21,7 +22,7 @@
   &nbsp;•&nbsp;
   <img src="https://github.com/ftrou/Decodifier/tree/main/.github" alt="Contribute" />
 </p>
-
+<br/>
 
 
 # DeCodifier v0.1 — Early Access
