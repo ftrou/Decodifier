@@ -130,6 +130,61 @@ curl -X PUT http://localhost:8000/todos/1/done
 
 ---
 
+## 🩹 Patch Compatibility (Codex, GPT, Claude, Copilot)
+
+DeCodifier accepts multiple patch formats and normalizes them automatically — so most LLMs “just work” out of the box.
+
+Supported formats:
+
+| Patch Style | Example Trigger | Status |
+|-------------|-----------------|--------|
+| Codex-style blocks | `*** Begin Patch` / `*** Update File:` | ✅ Auto-converted |
+| Unified diff | `@@` context patches | ⚙️ Native |
+| Inline replacements | `- old` / `+ new` | ⚙️ Normalized |
+| Partial context edits | Missing full context | 🔍 Heuristic merge |
+| Mixed output | Model outputs multiple formats | 🧩 Best-fit parse |
+
+Example accepted patches:
+
+```diff
+*** Begin Patch
+*** Update File: app/main.py
+@@
+-print("Hello")
++print("Hello, World!")
+```
+
+```diff
+--- a/app/main.py
++++ b/app/main.py
+@@ -1,3 +1,3 @@
+-print("Hello")
++print("Hello, World!")
+```
+
+```patch
+- return False
++ return True
+```
+
+If a patch fails, DeCodifier returns structured diagnostic output:
+
+```json
+{
+  "error": "patch_mismatch",
+  "missing_context": ["def process_user()"],
+  "suggestion": "Retry with full file or rebase",
+  "severity": "recoverable"
+}
+```
+
+DeCodifier is a **patch execution engine**, not just diff parsing.
+It resolves ambiguous LLM output into safe, deterministic filesystem changes.
+
+
+---
+
+
 ## 🧱 Architecture
 
 ```
