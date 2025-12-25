@@ -43,11 +43,10 @@ pip install -e .
 uvicorn engine.app.main:app --reload
 ```
 
-> 💡 **Try it live in 20 seconds**
+> 💡 **Try it live in 20 seconds** (Provider Keys must be exported first)
 ```bash
 python examples/openai_demo/decodifier_openai_demo.py
 ````
-
 
 DeCodifier stores project registry & conversations in `~/.decodifier`.
 
