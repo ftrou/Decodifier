@@ -202,23 +202,17 @@ Activity will appear in the Dashboard — including file writes and patches.
 🧱 Architecture
 
            LLM
-           
             |
-    (tool ca
-    lls + JSON args)
-    
+    (tool calls + JSON args)
             ↓
-┌───────────
-───────────────────┐
+┌──────────────────────────────┐
 │        DeCodifier API        │
 ├──────────────────────────────┤
 │ file ops | search | patches  │
 │ scaffolds | patterns (soon)  │
 └──────────┬──────────┬────────┘
-
            |          |
-         Pr
-         ojects   Registry
+         Projects   Registry
 
 
 
