@@ -1,8 +1,8 @@
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License"></a>
-  &nbsp;•&nbsp;
+  &nbsp;&nbsp;•&nbsp;&nbsp;
   <a href="#"><img src="https://img.shields.io/badge/Status-Alpha-yellow" alt="Project Status"></a>
-  &nbsp;•&nbsp;
+  &nbsp;&nbsp;•&nbsp;&nbsp;
   <a href="#"><img src="https://img.shields.io/badge/Python-3.11-blue" alt="Python Version"></a>
 </p>
 
