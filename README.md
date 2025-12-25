@@ -1,3 +1,19 @@
+<p align="center">
+  <img src="https://via.placeholder.com/600x140?text=DeCodifier" alt="DeCodifier" />
+</p>
+
+<p align="center">
+  <b>LLM Execution Layer for Real Code Bases</b><br/>
+  Make LLMs read, write, patch, and scaffold projects — safely and locally.
+</p>
+
+<p align="center">
+  <a href="#">Docs</a> • 
+  <a href="#">Roadmap</a> • 
+  <a href="#">Quickstart</a> • 
+  <a href="#">Contributing</a>
+</p>
+
 
 # DeCodifier v0.1 — Developer Preview (Alpha)
 
