@@ -1,86 +1,211 @@
-# DeCodifier v0.1 - Developer Preview (Alpha)
 
-DeCodifier is a local AI coding engine that lets LLMs safely inspect and modify real projects.
-It provides the file operations, project registry, and tool-calling plumbing an LLM needs to
-write shippable code - without sending your repo to a cloud.
+# DeCodifier v0.1 — Developer Preview (Alpha)
 
-- Local-first, runs on your machine
-- Model-agnostic: works with GPT / Claude / other tool-capable LLMs
-- Deterministic tools: consistent return structures for reliable parsing
+**DeCodifier is a local AI coding engine** that lets LLMs safely inspect and modify real projects.
+It provides the file operations, project registry, and tool-calling required for LLMs to write actual code —
+**without uploading repos or sending your code to the cloud**.
 
-## Quickstart
+---
+
+## 🚀 Quickstart
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -e .
 uvicorn engine.app.main:app --reload
 ```
 
 DeCodifier stores project registry & conversations in `~/.decodifier`.
-To override:
+
+Override location:
 
 ```bash
 export DECODIFIER_DATA_DIR=/your/path
 ```
 
-## What DeCodifier Does
+---
 
-- List projects / select target
-- Read files
-- Save/patch files
-- Create & scaffold new modules
-- Build features end-to-end
-- Embeddings / search (experimental)
-- Diff-level patching (WIP)
+## 🔑 Provider Keys (Required for Demos)
 
-## Tool Interface (LLM-Friendly)
+```bash
+export OPENAI_API_KEY=your_key_here
+# Anthropic / Groq support coming soon
+```
+
+⚠️ **Charges Warning**  
+You are responsible for any model provider usage fees.  
+DeCodifier performs **no metering or billing** on your behalf.
+
+---
+
+## 📦 Include DeCodifier in an LLM App
 
 ```python
 from decodifier.client import DeCodifierClient, handle_decodifier_tool_call
 from decodifier.tool_registry import DECODIFIER_TOOLS
 
-client = DeCodifierClient(base_url="http://127.0.0.1:8000")
+client = DeCodifierClient("http://127.0.0.1:8000")
 
-result = handle_decodifier_tool_call(client, "decodifier_read_file", {
-    "project_id": "core_backend",
-    "path": "engine/app/main.py",
-})
+tool_result = handle_decodifier_tool_call(
+    client,
+    "decodifier_read_file",
+    {
+        "project_id": "my_app",
+        "path": "src/main.py",
+    }
+)
 
-print(result)
+print(tool_result)
 ```
 
-Available tools are listed in `decodifier/tool_registry.py` and documented in `docs/tool_reference.md`.
+Works with:  
+- GPT Tool Calling  
+- Claude Functions  
+- Custom agent frameworks
 
-## Architecture
+---
 
-LLM <-> DeCodifier tools <-> FastAPI backend <-> Project on disk
+## 🧪 Demo: Build a Todo API From Scratch
 
-Local-only unless configured otherwise. No repo uploads. No vendor lock-in.
+Run:
 
-## Status
+```bash
+python clients/openai_demo/decodifier_openai_demo.py
+```
 
-DeCodifier is not a production SaaS. It is ready for:
+Example LLM prompt:
 
-- Solo devs
-- AI developers
-- Early-stage builders
-- Local R&D
-- Notebook + VSCode workflows
-- Agentic system research
+> Create a FastAPI Todo service with CRUD and mark-done.  
+> Put it in `scratch/todo_service/` and register the router in `main.py`.
 
-Not yet ready for:
+Generated structure:
 
-- Multi-tenant cloud deployments
-- Enterprise access controls
-- Repo-scale concurrency
-- Untrusted user input
+```
+scratch/todo_service/
+├── api.py
+├── models.py
+└── storage.py
+```
 
-## Contributing
+Test it:
 
-This is the alpha. Expect rough edges.
-Open issues, PRs, crashes, and questions welcome.
+```bash
+curl http://localhost:8000/todos
+curl -X POST http://localhost:8000/todos -H "Content-Type: application/json" -d '{"title": "Task"}'
+curl -X PUT http://localhost:8000/todos/1/done
+```
 
-## License
+---
 
-MIT (placeholder)
+## 🧱 Architecture
+
+```
+         LLM
+          |
+ (tool calls + JSON args)
+          ↓
+┌──────────────────────────────┐
+│        DeCodifier API        │
+├──────────────────────────────┤
+│ file ops | search | patches  │
+│ scaffolds | patterns (soon)  │
+└──────────┬──────────┬────────┘
+           |          |
+      Projects     Registry
+```
+
+- Local-only by default  
+- No repo uploads  
+- Vendor neutral  
+
+---
+
+## 🧠 Roadmap Snapshot
+
+| Stage | Target |
+|-------|---------|
+| v0.1  | MVP: file ops, scaffolding, dashboard |
+| v0.2  | Patterns — compressed abstractions |
+| v0.3  | Built-in test generation & smoke runs |
+| v0.4  | Multi-agent iteration & PR drafts |
+| v0.5  | SaaS (optional), team mode, cloud sync |
+
+📌 Full roadmap → `ROADMAP.md`
+
+---
+
+## 🧩 Patterns (Optional Module — In Progress)
+
+```
+decodifier_patterns/
+├── fastapi/
+│   ├── rest_resource.py
+│   ├── auth_jwt.py
+│   ├── sqlite_model.py
+├── ml/
+│   ├── inference_runner.py
+│   ├── dataset_iterator.py
+│   └── training_loop.py
+```
+
+Example usage:
+
+```python
+from decodifier_patterns.fastapi import rest_resource
+
+user_api = rest_resource("User", fields=["name:str", "email:str"])
+```
+
+---
+
+## 🎯 Who Is This For?
+
+| Persona        | Why They Care |
+|----------------|----------------|
+| Solo Devs      | Build features 2–5× faster |
+| Agent Builders | Real execution layer for code agents |
+| AI Engineers   | Experiment with model orchestration |
+| Startups       | Ship prototypes before hiring a team |
+| Researchers    | Study agent reliability limits |
+
+---
+
+## ❌ Limitations (Important)
+
+DeCodifier is **not**:
+
+- a compiler  
+- a linter  
+- a static analyzer  
+- a deployment tool  
+- a hosted SaaS (yet)
+
+It does **not guarantee correctness** — it accelerates development.  
+**You still own your code.**
+
+---
+
+## 📜 License
+
+MIT — Use freely.  
+If you build a business on this, tell us — we’ll cheer you on.
+
+---
+
+## 🤝 Contributing
+
+DeCodifier is early; rough edges expected. Contributions welcome.
+
+**Help Wanted:**
+- Patterns PRs
+- Test coverage
+- Windows env improvements
+- Tutorials & videos
+- Model provider adapters
+
+---
+
+## ⭐️ One-Sentence Summary
+
+**DeCodifier gives LLMs the tools they need to code like developers — not autocomplete.**
