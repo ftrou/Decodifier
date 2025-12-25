@@ -26,9 +26,11 @@ Capability	What It Means
 
 🔐 Local-First	Nothing is sent to our servers — ever
 
+
 Think: “Figma for AI code orchestration” — the layer that makes agent coding reliable.
 
 🧩 Why DeCodifier Exists
+
 ❌ Today’s Problem
 
 LLMs are good at writing code but bad at working inside a repo:
