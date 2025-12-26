@@ -20,6 +20,8 @@
   &nbsp;•&nbsp;
   <img src="https://github.com/ftrou/Decodifier/blob/main/ROADMAP.md" alt="Roadmap" /></a>
   &nbsp;•&nbsp;
+  <img src="https://github.com/ftrou/Decodifier/blob/main/GET_STARTED.md" alt="QuickStart" /></a>
+  &nbsp;•&nbsp;
   <img src="https://github.com/ftrou/Decodifier/blob/main/CONTRIBUTING.md" alt="Contributing" />
 </p>
 <br/>
