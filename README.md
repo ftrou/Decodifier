@@ -308,6 +308,66 @@ If you build a business on this, tell us — we’ll cheer you on.
 
 ---
 
+## ❓ FAQ
+
+**“Wait… this looks like function calling for codebases?”**
+ - Yes — that’s the idea.
+ - DeCodifier works like function calling, but wired to a real project instead of a toy sandbox.
+Models navigate your repo with JSON tool calls (read_file, apply_patch, etc.) and DeCodifier writes
+changes to disk safely. It’s the missing execution layer between LLMs and real codebases.
+
+**“Can I use this with vLLM / Claude / Gemini / Local models?”**
+ - Yes. DeCodifier is model-agnostic — anything that can do (or be wrapped to simulate) tool/function
+calling can drive it. The demo uses OpenAI’s format, but it’s just JSON over HTTP under the hood.
+Adapters for vLLM / local runtimes are planned.
+
+**“Will it handle patch conflicts?”**
+ - Today: yes at a basic level.
+
+ - Supports unified diffs and Codex-style patch blocks (*** Begin Patch).
+
+ - Normalizes formats before applying.
+
+ - If a patch fails, DeCodifier returns structured diagnostics:
+```` 
+{
+  "error": "patch_mismatch",
+  "missing_context": ["def process_user"],
+  "suggestion": "Retry with full file or rebase",
+  "severity": "recoverable"
+}
+````
+
+ - Planned: multi-hunk conflict analysis, auto-rebase helpers, and safe-write modes.
+
+**“How safe is it?”**
+ - Safer than pasting your repo into a chatbot — but still early access.
+
+ - Local-first: no repo upload required.
+
+ - Explicit project registry: the model can’t wander outside defined roots.
+
+ - No shell execution: file edits only, no running your code.
+
+ - Structured failures: no silent corruption.
+
+ - Not a sandbox or production access control system (yet).
+It’s built for human-in-the-loop coding.
+
+**“What’s the point of this?”**
+ - To move beyond prompt engineering.
+ - Tools + codebase context let LLMs:
+
+ - add routes, migrate folders, fix imports
+
+ - scaffold features end-to-end
+
+ - refactor without 20 “show me the file” loops
+
+**DeCodifier makes LLM-driven development feel like pairing with a junior engineer who actually knows the repo layout**
+
+---
+
 ## 🤝 Contributing
 
 DeCodifier is early; rough edges expected. Contributions welcome.
@@ -324,3 +384,5 @@ DeCodifier is early; rough edges expected. Contributions welcome.
 ## ⭐️ One-Sentence Summary
 
 **DeCodifier gives LLMs the tools they need to code like developers — not autocomplete.**
+
+
