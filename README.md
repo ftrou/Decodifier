@@ -5,33 +5,39 @@
   &nbsp;&nbsp;•&nbsp;&nbsp;
   <a href="#"><img src="https://img.shields.io/badge/Python-3.11-blue" alt="Python Version"></a>
 </p>
+
 <br/>
 
+<!--
+Optional banner:
+- Put a real image at: docs/decodifier_banner.png
+- Or change the src to any hosted image you want.
+-->
 <p align="center">
-  <img src="https://github.com/ftrou/Decodifier" alt="DeCodifier" />
+  <img src="docs/decodifier_banner.png" alt="DeCodifier" width="700" />
 </p>
 
-
-<p align="center"><b>LLM Execution Layer for Real Code Bases</b><br/>Make LLMs read, write, patch, and scaffold projects — safely and locally.</p>
-
+<p align="center">
+  <b>LLM Execution Layer for Real Code Bases</b><br/>
+  Make LLMs read, write, patch, and scaffold projects — safely and locally.
+</p>
 
 <p align="center">
-  <img src="https://github.com/ftrou/Decodifier/tree/main/docs" alt="Docs" /></a>
+  <a href="https://github.com/ftrou/Decodifier/tree/main/docs"><b>Docs</b></a>
   &nbsp;•&nbsp;
-  <img src="https://github.com/ftrou/Decodifier/blob/main/ROADMAP.md" alt="Roadmap" /></a>
+  <a href="https://github.com/ftrou/Decodifier/blob/main/ROADMAP.md"><b>Roadmap</b></a>
   &nbsp;•&nbsp;
-  <img src="https://github.com/ftrou/Decodifier/blob/main/GET_STARTED.md" alt="QuickStart" /></a>
+  <a href="https://github.com/ftrou/Decodifier/blob/main/GET_STARTED.md"><b>Quickstart</b></a>
   &nbsp;•&nbsp;
-  <img src="https://github.com/ftrou/Decodifier/blob/main/CONTRIBUTING.md" alt="Contributing" />
+  <a href="https://github.com/ftrou/Decodifier/blob/main/CONTRIBUTING.md"><b>Contributing</b></a>
 </p>
+
 <br/>
-
 
 # DeCodifier v0.1 — Early Access
 
-**DeCodifier is a local AI coding engine** that lets LLMs safely inspect and modify real projects.
-It provides the file operations, project registry, and tool-calling required for LLMs to write actual code —
-**without uploading repos or sending your code to the cloud**.
+**DeCodifier is a local AI coding engine** that lets LLMs safely inspect and modify real projects.  
+It provides file operations, a project registry, and tool-calling — so models can write real code **without uploading repos or sending your code to the cloud**.
 
 ---
 
@@ -39,24 +45,88 @@ It provides the file operations, project registry, and tool-calling required for
 
 ```bash
 pip install decodifier   # (coming soon)
+
 python -m venv .venv
 source .venv/bin/activate      # Windows: .venv\Scripts\activate
+
 pip install -e .
 uvicorn engine.app.main:app --reload
 ```
 
-> 💡 **Try it live in 20 seconds** (Provider Keys must be exported first)
+> 💡 **Try it live in ~20 seconds** (Provider Keys must be exported first)
 ```bash
 python examples/openai_demo/decodifier_openai_demo.py
-````
+```
 
-DeCodifier stores project registry & conversations in `~/.decodifier`.
+---
+
+## 📂 Data Storage
+
+DeCodifier stores project registry & conversations in:
+
+```text
+~/.decodifier
+```
 
 Override location:
 
 ```bash
 export DECODIFIER_DATA_DIR=/your/path
 ```
+
+---
+
+## 🎬 Demo
+
+Run the OpenAI demo client:
+
+```bash
+python clients/openai_demo/decodifier_openai_demo.py
+```
+
+What the model does automatically:
+
+| Action | Where |
+|--------|------|
+| Inspect file tree | `decodifier/` |
+| Scaffold feature | `scratch/todo_service/` |
+| Create API + models | `api.py`, `models.py`, `storage.py` |
+| Patch router | `engine/app/main.py` |
+| Serve live feature | `http://127.0.0.1:8000` |
+
+**No copy/paste. No hallucinated paths. No manual wiring.**
+
+---
+
+### 3️⃣ Hit the Endpoints
+
+Create a todo:
+
+```bash
+curl -X POST "http://127.0.0.1:8000/api/todos" \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Task"}'
+```
+
+List todos:
+
+```bash
+curl "http://127.0.0.1:8000/api/todos"
+```
+
+Mark done:
+
+```bash
+curl -X PUT "http://127.0.0.1:8000/api/todos/1/done"
+```
+
+Expected:
+
+```json
+{"id":1,"title":"Task","done":true}
+```
+
+🧠 **This proves:** DeCodifier isn’t code generation — it’s executable development.
 
 ---
 
@@ -77,7 +147,6 @@ DeCodifier performs **no metering or billing** on your behalf.
 
 ```python
 from decodifier.client import DeCodifierClient, handle_decodifier_tool_call
-from decodifier.tool_registry import DECODIFIER_TOOLS
 
 client = DeCodifierClient("http://127.0.0.1:8000")
 
@@ -87,48 +156,16 @@ tool_result = handle_decodifier_tool_call(
     {
         "project_id": "my_app",
         "path": "src/main.py",
-    }
+    },
 )
 
 print(tool_result)
 ```
 
-Works with:  
-- GPT Tool Calling  
-- Claude Functions  
+Works with:
+- GPT Tool Calling
+- Claude Functions
 - Custom agent frameworks
-
----
-
-## 🧪 Demo: Build a Todo API From Scratch
-
-Run:
-
-```bash
-python clients/openai_demo/decodifier_openai_demo.py
-```
-
-Example LLM prompt:
-
-> Create a FastAPI Todo service with CRUD and mark-done.  
-> Put it in `scratch/todo_service/` and register the router in `main.py`.
-
-Generated structure:
-
-```
-scratch/todo_service/
-├── api.py
-├── models.py
-└── storage.py
-```
-
-Test it:
-
-```bash
-curl http://localhost:8000/todos
-curl -X POST http://localhost:8000/todos -H "Content-Type: application/json" -d '{"title": "Task"}'
-curl -X PUT http://localhost:8000/todos/1/done
-```
 
 ---
 
@@ -144,7 +181,7 @@ Supported formats:
 | Unified diff | `@@` context patches | ⚙️ Native |
 | Inline replacements | `- old` / `+ new` | ⚙️ Normalized |
 | Partial context edits | Missing full context | 🔍 Heuristic merge |
-| Mixed output | Model outputs multiple formats | 🧩 Best-fit parse |
+| Mixed output | Multiple formats in one response | 🧩 Best-fit parse |
 
 Example accepted patches:
 
@@ -164,11 +201,6 @@ Example accepted patches:
 +print("Hello, World!")
 ```
 
-```patch
-- return False
-+ return True
-```
-
 If a patch fails, DeCodifier returns structured diagnostic output:
 
 ```json
@@ -180,16 +212,11 @@ If a patch fails, DeCodifier returns structured diagnostic output:
 }
 ```
 
-DeCodifier is a **patch execution engine**, not just diff parsing.
-It resolves ambiguous LLM output into safe, deterministic filesystem changes.
-
-
 ---
-
 
 ## 🧱 Architecture
 
-```
+```text
          LLM
           |
  (tool calls + JSON args)
@@ -213,7 +240,7 @@ It resolves ambiguous LLM output into safe, deterministic filesystem changes.
 ## 🧠 Roadmap Snapshot
 
 | Stage | Target |
-|-------|---------|
+|-------|--------|
 | v0.1  | MVP: file ops, scaffolding, dashboard |
 | v0.2  | Patterns — compressed abstractions |
 | v0.3  | Built-in test generation & smoke runs |
@@ -226,7 +253,7 @@ It resolves ambiguous LLM output into safe, deterministic filesystem changes.
 
 ## 🧩 Patterns (Optional Module — In Progress)
 
-```
+```text
 decodifier_patterns/
 ├── fastapi/
 │   ├── rest_resource.py
@@ -250,20 +277,19 @@ user_api = rest_resource("User", fields=["name:str", "email:str"])
 
 ## 🎯 Who Is This For?
 
-| Persona        | Why They Care |
-|----------------|----------------|
-| Solo Devs      | Build features 2–5× faster |
+| Persona | Why They Care |
+|---------|---------------|
+| Solo Devs | Build features 2–5× faster |
 | Agent Builders | Real execution layer for code agents |
-| AI Engineers   | Experiment with model orchestration |
-| Startups       | Ship prototypes before hiring a team |
-| Researchers    | Study agent reliability limits |
+| AI Engineers | Experiment with model orchestration |
+| Startups | Ship prototypes before hiring a team |
+| Researchers | Study agent reliability limits |
 
 ---
 
 ## ❌ Limitations (Important)
 
 DeCodifier is **not**:
-
 - a compiler  
 - a linter  
 - a static analyzer  
@@ -279,7 +305,6 @@ It does **not guarantee correctness** — it accelerates development.
 
 MIT — Use freely.  
 If you build a business on this, tell us — we’ll cheer you on.
-
 
 ---
 
