@@ -170,6 +170,14 @@ def handle_decodifier_tool_call(
         )
 
     if tool_name == "decodifier_read_file":
+        # Defensive guard so bad tool calls don't crash the demo.
+        if "path" not in arguments or not arguments.get("path"):
+            return {
+                "error": "missing_path",
+                "message": "decodifier_read_file requires a 'path' argument.",
+                "received_arguments": arguments,
+            }
+
         return client.read_file(
             project_id=arguments["project_id"],
             path=arguments["path"],
