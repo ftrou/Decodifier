@@ -338,7 +338,7 @@ Adapters for vLLM / local runtimes are planned.
 }
 ````
 
- - Planned: multi-hunk conflict analysis, auto-rebase helpers, and safe-write modes.
+ - Planned: multi-chunk conflict analysis, auto-rebase helpers, and safe-write modes.
 
 **“How safe is it?”**
  - Safer than pasting your repo into a chatbot — but still early access.
@@ -352,7 +352,7 @@ Adapters for vLLM / local runtimes are planned.
  - Structured failures: no silent corruption.
 
  - Not a sandbox or production access control system (yet).
-It’s built for human-in-the-loop coding.
+ - It’s built for human-in-the-loop coding.
 
 **“What’s the point of this?”**
  - To move beyond prompt engineering.
@@ -363,6 +363,25 @@ It’s built for human-in-the-loop coding.
  - scaffold features end-to-end
 
  - refactor without 20 “show me the file” loops
+
+**“What makes this different from GitHub Copilot or regular prompting?”**
+ - Copilot ≈ autocomplete.
+ - DeCodifier ≈ tooling layer that lets LLMs build features end-to-end:
+
+ - create files
+
+ - patch services
+
+ - register routers
+
+ - scaffold modules
+
+ - update imports
+
+ - return results you can trust
+
+**“Can I use this with my existing repo?”**
+ - Yes — point DeCodifier at any folder, select it as a project, and start issuing calls.
 
 **DeCodifier makes LLM-driven development feel like pairing with a junior engineer who actually knows the repo layout**
 
