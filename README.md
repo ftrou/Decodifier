@@ -18,8 +18,8 @@ Optional banner:
 </p>
 
 <p align="center">
-  <b>LLM Execution Layer for Real Code Bases</b><br/>
-  Make LLMs read, write, patch, and scaffold projects — safely and locally.
+  <b>**When prompts aren’t enough.**</b><br/>
+  DeCodifier is the execution layer for AI engineers — where LLMs actually build features, register routers, and patch codebases safely.
 </p>
 
 <p align="center">
