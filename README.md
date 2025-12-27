@@ -85,6 +85,7 @@ backend/response_schemas.py         ✓
 ```
 
 LLM never saw or generated these files.
+
 🎛️ Core Concepts
 1. Patterns
 
@@ -92,19 +93,19 @@ Reusable architecture definitions.
 
 Examples:
 
-    backend.model
+  -  backend.model
 
-    backend.http_endpoint
+  -  backend.http_endpoint
 
-    backend.crud
+  -  backend.crud
 
-    backend.request_schema
+  -  backend.request_schema
 
-    backend.storage
+  -  backend.storage
 
-    agent.llm_chat
+  -  agent.llm_chat
 
-    service.queue_worker
+  -  service.queue_worker
 
 2. Specs
 
@@ -131,6 +132,7 @@ LLMs don’t waste compute on:
 Instead of generating code, they generate intent.
 
 This reduces token usage by 60–90% in AI-assisted development.
+
 📈 Why this matters at scale
 
 If adopted inside a large organization:
@@ -153,6 +155,7 @@ v0.1	PROTOTYPE	LLM-safe file read/write + project ops
 v0.2	CURRENT	Pattern engine, validator, FastAPI backend generation
 v0.3	In Progress	No-Code-for-LLMs: full backend extension without reading code
 v1.0	ROADMAP	Pattern packs, DB/CRUD, agents, auth, diff-safe generation
+
 🎯 v0.3 Mission
 
   -  A full backend can be extended without the LLM ever reading the generated code.
@@ -170,6 +173,7 @@ Milestones:
   -  test harness generation
 
 This will complete the first end-to-end pattern chain.
+
 🛡️ License
 
 To protect the core compiler logic and prevent closed SaaS forks:
@@ -187,7 +191,10 @@ uvicorn engine.app.main:app --reload
 open http://localhost:8000/dashboard
 ```
 
+⚠️ The /backend directory contains generated output and may be overwritten by Decodifier builds.
+
 Add a spec → click Generate from Specs → watch the backend evolve.
+
 📣 Join the Category
 
   -  Decodifier is the first compiler for AI-generated software.
@@ -197,6 +204,7 @@ If you’re building AI systems and want to collaborate, open an issue or reach 
 
 This isn’t a tool.
 This is a new layer.
+
 🧠 Vision
 
 Software creation becomes:
