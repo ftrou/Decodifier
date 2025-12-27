@@ -206,3 +206,10 @@ LLMs operate at the architecture tier.
 Decodifier handles the rest.
 
 This is how AI development scales.
+
+## 🚀 Quickstart
+
+```bash
+pip install decodifier
+decodifier init myproject
+decodifier generate
