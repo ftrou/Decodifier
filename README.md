@@ -1,405 +1,193 @@
-<p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License"></a>
-  &nbsp;&nbsp;•&nbsp;&nbsp;
-  <a href="#"><img src="https://img.shields.io/badge/Status-Alpha-yellow" alt="Project Status"></a>
-  &nbsp;&nbsp;•&nbsp;&nbsp;
-  <a href="#"><img src="https://img.shields.io/badge/Python-3.11-blue" alt="Python Version"></a>
-</p>
+# Decodifier  
+### **The Compiler for AI-Generated Software**
 
-<br/>
-
-<!--
-Optional banner:
-- Put a real image at: docs/decodifier_banner.png
-- Or change the src to any hosted image you want.
--->
-<p align="center">
-  <img src="docs/decodifier_banner.png" alt="DeCodifier" width="700" />
-</p>
-
-<p align="center">
-  <b>**When prompts aren’t enough.**</b><br/>
-  DeCodifier is the execution layer for AI engineers — where LLMs actually build features, register routers, and patch codebases safely.
-</p>
-
-<p align="center">
-  <a href="https://github.com/ftrou/Decodifier/tree/main/docs"><b>Docs</b></a>
-  &nbsp;•&nbsp;
-  <a href="https://github.com/ftrou/Decodifier/blob/main/ROADMAP.md"><b>Roadmap</b></a>
-  &nbsp;•&nbsp;
-  <a href="https://github.com/ftrou/Decodifier/blob/main/GET_STARTED.md"><b>Quickstart</b></a>
-  &nbsp;•&nbsp;
-  <a href="https://github.com/ftrou/Decodifier/blob/main/CONTRIBUTING.md"><b>Contributing</b></a>
-</p>
-
-<br/>
-
-# DeCodifier v0.1 — Early Access
-
-**DeCodifier is a local AI coding engine** that lets LLMs safely inspect and modify real projects.  
-It provides file operations, a project registry, and tool-calling — so models can write real code **without uploading repos or sending your code to the cloud**.
+**LLMs don’t write code.**  
+They write **intent**.  
+Decodifier compiles that intent into working software.
 
 ---
 
-## 🚀 Quickstart  
+## 🚀 What is Decodifier?
 
-```bash
-python -m venv .venv
-source .venv/bin/activate      # Windows: .venv\Scripts\activate
+Decodifier is a new layer in the AI stack:
 
-pip install -e .
-uvicorn engine.app.main:app --reload
-```
+> **A compiler for LLM-generated software.  
+> LLMs write specs. Decodifier builds the code.**
 
-> 💡 **Try it live in ~20 seconds** (Provider Keys must be exported first)
-```bash
-python examples/openai_demo/decodifier_openai_demo.py
-```
- - pip install decodifier (coming soon)
----
+Instead of prompting models to generate Python, TypeScript, or SQL directly, LLMs (or humans) produce **small declarative specs**. Decodifier validates them, compiles them, and updates the codebase — **without the model ever reading or editing files.**
 
-## 📂 Data Storage
+This creates a **token firewall** between LLMs and codebases:
 
-DeCodifier stores project registry & conversations in:
-
-```text
-~/.decodifier
-```
-
-Override location:
-
-```bash
-export DECODIFIER_DATA_DIR=/your/path
-```
+- LLMs stay at the **architecture & intent** level  
+- Decodifier handles the **code**  
+- Projects stay consistent, safe, and scalable
 
 ---
 
-## 🎬 Demo
+## 🧩 Why this matters
 
-Run the OpenAI demo client:
+AI coding today is stuck in a chat window:  
+LLMs regenerate files, hallucinate imports, and break architecture.
 
-```bash
-python clients/openai_demo/decodifier_openai_demo.py
-```
+With Decodifier:
 
-What the model does automatically:
+| Without Decodifier | With Decodifier |
+|-------------------|-----------------|
+| “Write a FastAPI endpoint for users” | ```yaml<br>kind: backend.http_endpoint<br>name: create_user<br>path: "/api/users"<br>method: post``` |
+| 200–800 tokens of code | **8 lines of intent** |
+| LLM must read repo | **No repo access needed** |
+| Architecture drifts | Architecture is enforced |
+| Code is the medium | **Specs are the medium** |
 
-| Action | Where |
-|--------|------|
-| Inspect file tree | `decodifier/` |
-| Scaffold feature | `scratch/todo_service/` |
-| Create API + models | `api.py`, `models.py`, `storage.py` |
-| Patch router | `engine/app/main.py` |
-| Serve live feature | `http://127.0.0.1:8000` |
-
-**No copy/paste. No hallucinated paths. No manual wiring.**
+**Result:**  
+LLMs develop features without touching code.
 
 ---
 
-### 3️⃣ Hit the Endpoints
+## 🏗️ What it looks like
 
-Create a todo:
+**input →**
 
-```bash
-curl -X POST "http://127.0.0.1:8000/api/todos" \
+```yaml
+# patterns/specs/backend.user.create.yaml
+kind: backend.http_endpoint
+name: create_user
+path: "/api/users"
+method: post
+request_model: UserCreate
+response_model: User
+
+command →
+
+curl -X POST "http://localhost:8000/patterns/build" \
   -H "Content-Type: application/json" \
-  -d '{"title":"Task"}'
+  -d '{"spec_dir": "patterns/specs", "project_root": "."}'
+
+output →
+
+backend/api/generated_endpoints.py  ✓
+backend/request_schemas.py          ✓
+backend/response_schemas.py         ✓
 ```
 
-List todos:
+LLM never saw or generated these files.
+🎛️ Core Concepts
+1. Patterns
 
+Reusable architecture definitions.
+
+Examples:
+
+    backend.model
+
+    backend.http_endpoint
+
+    backend.crud
+
+    backend.request_schema
+
+    backend.storage
+
+    agent.llm_chat
+
+    service.queue_worker
+
+2. Specs
+
+Tiny YAML files produced by humans or LLMs.
+3. Compiler
+
+Validates → normalizes → generates → wires code.
+4. Token Firewall
+
+LLMs do not read or modify source files.
+They operate entirely through specs + build results.
+📉 Why this saves tokens
+
+LLMs don’t waste compute on:
+
+  -  repo embeddings
+
+  -  code diffs
+
+  -  file rewrites
+
+  -  correcting hallucinated imports
+
+Instead of generating code, they generate intent.
+
+This reduces token usage by 60–90% in AI-assisted development.
+📈 Why this matters at scale
+
+If adopted inside a large organization:
+
+  -  Fewer GPUs needed for development workflows
+
+  -  Models don’t need huge context windows for legacy repos
+
+  -  Smaller models can do more work
+
+  -  Architecture becomes enforceable, not optional
+
+  -  At hyperscaler scale, this could represent
+    $100M–$500M/year in net efficiency
+    (compute + engineering time), even with partial rollout.
+
+📌 Status
+Version	Stage	What it does
+v0.1	PROTOTYPE	LLM-safe file read/write + project ops
+v0.2	CURRENT	Pattern engine, validator, FastAPI backend generation
+v0.3	In Progress	No-Code-for-LLMs: full backend extension without reading code
+v1.0	ROADMAP	Pattern packs, DB/CRUD, agents, auth, diff-safe generation
+🎯 v0.3 Mission
+
+  -  A full backend can be extended without the LLM ever reading the generated code.
+
+Milestones:
+
+  -  backend.model generator
+
+  -  backend.crud integration
+
+  -  request/response schema emitters
+
+  -  router auto-mount
+
+  -  test harness generation
+
+This will complete the first end-to-end pattern chain.
+🛡️ License
+
+To protect the core compiler logic and prevent closed SaaS forks:
+
+AGPL-3.0
+
+This license allows public use, contributions, and research —
+but requires that improvements remain open if used as a hosted service.
+💬 Getting Started
 ```bash
-curl "http://127.0.0.1:8000/api/todos"
+pip install -r requirements.txt
+uvicorn engine.app.main:app --reload
+open http://localhost:8000/dashboard
 ```
 
-Mark done:
+Add a spec → click Generate from Specs → watch the backend evolve.
+📣 Join the Category
 
-```bash
-curl -X PUT "http://127.0.0.1:8000/api/todos/1/done"
-```
+  -  Decodifier is the first compiler for AI-generated software.
+  -  LLMs don’t need to write code. They need a compiler that does.
 
-Expected:
+If you’re building AI systems and want to collaborate, open an issue or reach out.
 
-```json
-{"id":1,"title":"Task","done":true}
-```
+This isn’t a tool.
+This is a new layer.
+🧠 Vision
 
-🧠 **This proves:** DeCodifier isn’t code generation — it’s executable development.
+Software creation becomes:
 
----
+Architecture → Patterns → Specs → Compiler → Code → Running System
 
-## 🔑 Provider Keys (Required for Demos)
+LLMs operate at the architecture tier.
+Decodifier handles the rest.
 
-```bash
-export OPENAI_API_KEY=your_key_here
-# Anthropic / Groq support coming soon
-```
-
-⚠️ **Charges Warning**  
-You are responsible for any model provider usage fees.  
-DeCodifier performs **no metering or billing** on your behalf.
-
----
-
-## 📦 Include DeCodifier in an LLM App
-
-```python
-from decodifier.client import DeCodifierClient, handle_decodifier_tool_call
-
-client = DeCodifierClient("http://127.0.0.1:8000")
-
-tool_result = handle_decodifier_tool_call(
-    client,
-    "decodifier_read_file",
-    {
-        "project_id": "my_app",
-        "path": "src/main.py",
-    },
-)
-
-print(tool_result)
-```
-
-Works with:
-- GPT Tool Calling
-- Claude Functions
-- Custom agent frameworks
-
----
-
-## 🩹 Patch Compatibility (Codex, GPT, Claude, Copilot)
-
-DeCodifier accepts multiple patch formats and normalizes them automatically — so most LLMs “just work” out of the box.
-
-Supported formats:
-
-| Patch Style | Example Trigger | Status |
-|-------------|-----------------|--------|
-| Codex-style blocks | `*** Begin Patch` / `*** Update File:` | ✅ Auto-converted |
-| Unified diff | `@@` context patches | ⚙️ Native |
-| Inline replacements | `- old` / `+ new` | ⚙️ Normalized |
-| Partial context edits | Missing full context | 🔍 Heuristic merge |
-| Mixed output | Multiple formats in one response | 🧩 Best-fit parse |
-
-Example accepted patches:
-
-```diff
-*** Begin Patch
-*** Update File: app/main.py
-@@
--print("Hello")
-+print("Hello, World!")
-```
-
-```diff
---- a/app/main.py
-+++ b/app/main.py
-@@ -1,3 +1,3 @@
--print("Hello")
-+print("Hello, World!")
-```
-
-If a patch fails, DeCodifier returns structured diagnostic output:
-
-```json
-{
-  "error": "patch_mismatch",
-  "missing_context": ["def process_user()"],
-  "suggestion": "Retry with full file or rebase",
-  "severity": "recoverable"
-}
-```
-
----
-
-## 🧱 Architecture
-
-```text
-         LLM
-          |
- (tool calls + JSON args)
-          ↓
-┌──────────────────────────────┐
-│        DeCodifier API        │
-├──────────────────────────────┤
-│ file ops | search | patches  │
-│ scaffolds | patterns (soon)  │
-└──────────┬──────────┬────────┘
-           |          |
-      Projects     Registry
-```
-
-- Local-only by default  
-- No repo uploads  
-- Vendor neutral  
-
----
-
-## 🧠 Roadmap Snapshot
-
-| Stage | Target |
-|-------|--------|
-| v0.1  | MVP: file ops, scaffolding, dashboard |
-| v0.2  | Patterns — compressed abstractions |
-| v0.3  | Built-in test generation & smoke runs |
-| v0.4  | Multi-agent iteration & PR drafts |
-| v0.5  | SaaS (optional), team mode, cloud sync |
-
-📌 Full roadmap → `ROADMAP.md`
-
----
-
-## 🧩 Patterns (Optional Module — In Progress)
-
-```text
-decodifier_patterns/
-├── fastapi/
-│   ├── rest_resource.py
-│   ├── auth_jwt.py
-│   ├── sqlite_model.py
-├── ml/
-│   ├── inference_runner.py
-│   ├── dataset_iterator.py
-│   └── training_loop.py
-```
-
-Example usage:
-
-```python
-from decodifier_patterns.fastapi import rest_resource
-
-user_api = rest_resource("User", fields=["name:str", "email:str"])
-```
-
----
-
-## 🎯 Who Is This For?
-
-| Persona | Why They Care |
-|---------|---------------|
-| Solo Devs | Build features 2–5× faster |
-| Agent Builders | Real execution layer for code agents |
-| AI Engineers | Experiment with model orchestration |
-| Startups | Ship prototypes before hiring a team |
-| Researchers | Study agent reliability limits |
-
----
-
-## ❌ Limitations (Important)
-
-DeCodifier is **not**:
-- a compiler  
-- a linter  
-- a static analyzer  
-- a deployment tool  
-- a hosted SaaS (yet)
-
-It does **not guarantee correctness** — it accelerates development.  
-**You still own your code.**
-
----
-
-## 📜 License
-
-MIT — Use freely.  
-If you build a business on this, tell us — we’ll cheer you on.
-
----
-
-## ❓ FAQ
-
-**“Wait… this looks like function calling for codebases?”**
- - Yes — that’s the idea.
- - DeCodifier works like function calling, but wired to a real project instead of a toy sandbox.
-Models navigate your repo with JSON tool calls (read_file, apply_patch, etc.) and DeCodifier writes
-changes to disk safely. It’s the missing execution layer between LLMs and real codebases.
-
-**“Can I use this with vLLM / Claude / Gemini / Local models?”**
- - Yes. DeCodifier is model-agnostic — anything that can do (or be wrapped to simulate) tool/function
-calling can drive it. The demo uses OpenAI’s format, but it’s just JSON over HTTP under the hood.
-Adapters for vLLM / local runtimes are planned.
-
-**“Will it handle patch conflicts?”**
- - Today: yes at a basic level.
-
- - Supports unified diffs and Codex-style patch blocks (*** Begin Patch).
-
- - Normalizes formats before applying.
-
- - If a patch fails, DeCodifier returns structured diagnostics:
-```` 
-{
-  "error": "patch_mismatch",
-  "missing_context": ["def process_user"],
-  "suggestion": "Retry with full file or rebase",
-  "severity": "recoverable"
-}
-````
-
- - Planned: multi-chunk conflict analysis, auto-rebase helpers, and safe-write modes.
-
-**“How safe is it?”**
- - Safer than pasting your repo into a chatbot — but still early access.
-
- - Local-first: no repo upload required.
-
- - Explicit project registry: the model can’t wander outside defined roots.
-
- - No shell execution: file edits only, no running your code.
-
- - Structured failures: no silent corruption.
-
- - Not a sandbox or production access control system (yet).
- - It’s built for human-in-the-loop coding.
-
-**“What’s the point of this?”**
- - To move beyond prompt engineering.
- - Tools + codebase context let LLMs:
-
- - add routes, migrate folders, fix imports
-
- - scaffold features end-to-end
-
- - refactor without 20 “show me the file” loops
-
-**“What makes this different from GitHub Copilot or regular prompting?”**
- - Copilot ≈ autocomplete.
- - DeCodifier ≈ tooling layer that lets LLMs build features end-to-end:
-
- - create files
-
- - patch services
-
- - register routers
-
- - scaffold modules
-
- - update imports
-
- - return results you can trust
-
-**“Can I use this with my existing repo?”**
- - Yes — point DeCodifier at any folder, select it as a project, and start issuing calls.
-
-**DeCodifier makes LLM-driven development feel like pairing with a junior engineer who actually knows the repo layout**
-
----
-
-## 🤝 Contributing
-
-DeCodifier is early; rough edges expected. Contributions welcome.
-
-**Help Wanted:**
-- Patterns PRs
-- Test coverage
-- Windows env improvements
-- Tutorials & videos
-- Model provider adapters
-
----
-
-## ⭐️ One-Sentence Summary
-
-**DeCodifier gives LLMs the tools they need to code like developers — not autocomplete.**
-
-
+This is how AI development scales.
