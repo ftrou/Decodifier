@@ -1,4 +1,0 @@
-pattern: agent_ai.llm_chat_express
-id: llm_chat_express
-route: /llm-chat-express
-model: gpt-4

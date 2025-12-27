@@ -1,6 +1,0 @@
-pattern: infra.k8s_deployment_service
-id: k8s_deployment_service
-image: ghcr.io/example/user-service:latest
-replicas: 2
-ports:
-- 80

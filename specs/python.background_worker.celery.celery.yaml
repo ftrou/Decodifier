@@ -1,4 +1,0 @@
-pattern: python.background_worker.celery
-id: celery
-queue: user-events
-task: celery_task

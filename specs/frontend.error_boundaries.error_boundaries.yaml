@@ -1,4 +1,0 @@
-pattern: frontend.error_boundaries
-id: error_boundaries
-scope: component
-fallback_ui: Something went wrong

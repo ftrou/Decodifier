@@ -1,3 +1,0 @@
-pattern: infra.docker_compose_service
-id: docker_compose_service
-image: ghcr.io/example/user-service:latest

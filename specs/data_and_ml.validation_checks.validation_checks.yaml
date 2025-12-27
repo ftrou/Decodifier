@@ -1,5 +1,0 @@
-pattern: data_and_ml.validation_checks
-id: validation_checks
-target: ip
-rule: validation_checks_rule
-severity: error

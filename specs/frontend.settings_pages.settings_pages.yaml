@@ -1,7 +1,0 @@
-pattern: frontend.settings_pages
-id: settings_pages
-sections:
-- profile
-- preferences
-data_bindings:
-  profile: /api/users/me

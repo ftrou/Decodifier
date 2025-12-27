@@ -1,5 +1,0 @@
-pattern: frontend.component_libraries
-id: component_libraries
-components:
-- Button
-- Input

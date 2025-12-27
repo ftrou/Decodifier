@@ -1,4 +1,0 @@
-pattern: backend.db_migrations
-id: db_migrations
-operations:
-- create users table

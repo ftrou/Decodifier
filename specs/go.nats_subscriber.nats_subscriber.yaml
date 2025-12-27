@@ -1,4 +1,0 @@
-pattern: go.nats_subscriber
-id: nats_subscriber
-subject: users.created
-handler: handle_nats_subscriber
