@@ -178,6 +178,7 @@ AGPL-3.0
 
 This license allows public use, contributions, and research —
 but requires that improvements remain open if used as a hosted service.
+(12/26/2025)
 
 💬 Getting Started
 ```bash
