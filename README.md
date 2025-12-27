@@ -42,7 +42,19 @@ With Decodifier:
 | Code is the medium | **Specs are the medium** |
 
 **Result:**  
+
 LLMs develop features without touching code.
+## 🧮 Token Efficiency Example
+
+Traditional LLM coding:
+• 4,000–20,000 tokens / request
+• Repeated context reload
+• Frequent hallucinations
+
+With Decodifier specs:
+• 50–300 tokens / request
+• No file diffing or context reload
+• Zero hallucinated imports
 
 ---
 
