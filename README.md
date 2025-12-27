@@ -1,4 +1,10 @@
-![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-alpha-yellow.svg">
+  <img src="https://img.shields.io/badge/License-AGPL--3.0-blue.svg">
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg">
+  <img src="https://img.shields.io/badge/LLM-compiler-orange.svg">
+</p>
+<br>
 
 # Decodifier  
 ### **The Compiler for AI-Generated Software**
