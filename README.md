@@ -41,11 +41,9 @@ It provides file operations, a project registry, and tool-calling — so models 
 
 ---
 
-## 🚀 Quickstart
+## 🚀 Quickstart  
 
 ```bash
-pip install decodifier   # (coming soon)
-
 python -m venv .venv
 source .venv/bin/activate      # Windows: .venv\Scripts\activate
 
@@ -57,7 +55,7 @@ uvicorn engine.app.main:app --reload
 ```bash
 python examples/openai_demo/decodifier_openai_demo.py
 ```
-
+ - pip install decodifier (coming soon)
 ---
 
 ## 📂 Data Storage
