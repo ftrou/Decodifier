@@ -180,15 +180,6 @@ Milestones:
 
 This will complete the first end-to-end pattern chain.
 
-🛡️ License
-
-To protect the core compiler logic and prevent closed SaaS forks:
-
-AGPL-3.0
-
-This license allows public use, contributions, and research —
-but requires that improvements remain open if used as a hosted service.
-(12/26/2025)
 
 💬 Getting Started
 ```bash
@@ -210,6 +201,16 @@ If you’re building AI systems and want to collaborate, open an issue or reach 
 
 This isn’t a tool.
 This is a new layer.
+
+🛡️ License
+
+To protect the core compiler logic and prevent closed SaaS forks:
+
+AGPL-3.0
+
+This license allows public use, contributions, and research —
+but requires that improvements remain open if used as a hosted service.
+(12/26/2025)
 
 🧠 Vision
 
