@@ -166,6 +166,7 @@ AGPL-3.0
 
 This license allows public use, contributions, and research —
 but requires that improvements remain open if used as a hosted service.
+
 💬 Getting Started
 ```bash
 pip install -r requirements.txt
